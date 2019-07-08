@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(version: 2019_07_08_151513) do
   enable_extension "plpgsql"
 
   create_table "foods", force: :cascade do |t|
-    t.string "ndb_number"
+    t.string "ndbno"
     t.string "name"
-    t.string "food_group"
-    t.string "data_source"
-    t.string "manufacturer"
+    t.string "group"
+    t.string "ds"
+    t.string "manu"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
