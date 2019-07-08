@@ -1,5 +1,7 @@
 class FoodsController < ApplicationController
   def index
-    render json: UsdaService.new(Food.all)
+    render locals: {
+      facade: UsdaFacade.new(params[:q])
+    }
   end
 end
