@@ -1,15 +1,17 @@
 class UsdaService
+  include FastJsonapi::ObjectSerializer
+  attributes :id, :ndbno, :name, :group, :ds, :manu
 
   def self.find_foods_by_ingredient(ingredient)
     get_json('/ndb/search', q: "#{ingredient}")
   end
 
   private
+
   def get_json(url, params)
     response = conn.get(url, params)
     JSON.parse(response.body, symbolize_names: true)
   end
-
 
   def conn
     Faraday.new(url: 'api.nal.usda.gov') do |f|
