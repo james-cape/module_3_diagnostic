@@ -19,10 +19,14 @@ feature "user can search for ingredient" do
     expect(current_path).to eq("/foods")
 
     # Then I should see a total of the number of items returned by the search. (531 for sweet potatoes)
-    expect(search_results.count).to eq(531)
+    expect(page).to have_content("531")
+    # expect(search_results.count).to eq(531)
 
     # Then I should see a list of ten foods sorted by relevance.
-    expect(search_results.first.nbd_number).to eq("5")
+    expect(page).to have_css("food-1")
+    expect(page).to have_css("food-5")
+    expect(page).to have_css("food-10")
+    expect(page).to_not have_css("food-11")
 
     # And for each of the foods I should see:
     # - The food's NDB Number
@@ -30,11 +34,13 @@ feature "user can search for ingredient" do
     # - The food group to which the food belongs
     # - The food's data source
     # - The food's manufacturer
-    expect(search_results.first.ndb_number).to eq("5")
-    expect(search_results.first.ndb_number).to eq("pie")
-    expect(search_results.first.ndb_number).to eq("dinner")
-    expect(search_results.first.ndb_number).to eq("something.gov")
-    expect(search_results.first.ndb_number).to eq("Tyson")
+    within ".food-1" do
+      expect(page).to have_content("5")
+      expect(page).to have_content("pie")
+      expect(page).to have_content("dinner")
+      expect(page).to have_content("something.gov")
+      expect(page).to have_content("Tyson")
+    end
 
 
 
