@@ -14,6 +14,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faraday'
 gem 'figaro'
 gem 'bootstrap-sass'
+gem 'fast_jsonapi'
 
 group :development, :test do
   gem 'pry'
@@ -24,6 +25,8 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do

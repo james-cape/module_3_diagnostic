@@ -1,4 +1,6 @@
 class UsdaService
+  include FastJsonapi::ObjectSerializer
+  attributes :id, :ndbno, :name, :group, :ds, :manu
 
   def self.find_foods_by_ingredient(ingredient)
     get_json('/ndb/search', q: "#{ingredient}")
