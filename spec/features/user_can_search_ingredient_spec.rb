@@ -6,6 +6,8 @@ feature "user can search for ingredient" do
     # When I visit "/"
     visit '/'
 
+    expect(current_path).to eq(root_path)
+
     # And I fill in the search form with "sweet potatoes"
     # (Note: Use the existing search form)
     # And I click "Search"
