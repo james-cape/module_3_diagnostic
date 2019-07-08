@@ -6,7 +6,7 @@ describe UsdaService do
       WebMock.disable!
 
       foods = UsdaService.find_foods_by_ingredient("sweet potatoes")
-
+require 'pry'; binding.pry
       food = foods.first
 
       expect(foods.count).to eq(531)
