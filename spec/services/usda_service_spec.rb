@@ -3,20 +3,19 @@ require 'rails_helper'
 describe UsdaService do
   describe "foods" do
     it "finds all foods by ingredient" do
-      WebMock.disable!
+      # WebMock.disable!
+      VCR.use_cassette("services/find_foods") do
+        foods = UsdaService.find_foods_by_ingredient("sweet potatoes")
 
-      foods = UsdaService.find_foods_by_ingredient("sweet potatoes")
+        food = foods.first
 
-require 'pry'; binding.pry
-      food = foods.first
-
-      expect(foods.count).to eq(531)
-      expect(food[:ndbno]).to eq("12345")
-      expect(food[:name]).to eq("pie")
-      expect(food[:group]).to eq("dessert")
-      expect(food[:ds]).to eq("BI") #BL or SR
-      expect(food[:manu]).to eq("Tyson")
-
+        expect(foods.count).to eq(150)
+        expect(food[:ndbno]).to eq("45094945")
+        expect(food[:name]).to eq("ONE POTATO TWO POTATO, PLAIN JAYNES, SWEET POTATO CHIPS, UPC: 785654000544")
+        expect(food[:group]).to eq("Branded Food Products Database")
+        expect(food[:ds]).to eq("LI")
+        expect(food[:manu]).to eq("Dieffenbach's Potato Chips")
+      end
     end
   end
 end
